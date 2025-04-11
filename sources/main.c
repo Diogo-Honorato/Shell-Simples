@@ -1,9 +1,13 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "../headers/main/main.h"
 
 int main(){
 
-    printf("hello\n");
+    //Main loop
+    // while(1){
+        printPrompt();
+        printf("\n");
+
+    // }
 
     return 0;
 }
