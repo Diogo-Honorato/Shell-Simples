@@ -29,5 +29,8 @@ obj_dirs:
 clean:
 	@rm -rf $(OBJ_DIR) $(EXECUTABLE)
 
+leak:
+	@valgrind --leak-check=full --show-leak-kinds=all ./$(EXECUTABLE)
+
 
 .PHONY: all clean leak
