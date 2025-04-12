@@ -52,4 +52,3 @@ const char* typePrompt() {
 
     return prompt;
 }
-

@@ -9,6 +9,8 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+
 char* readCommand(const char* prompt);
+
 
 #endif
