@@ -1,41 +1,55 @@
 #include "../../headers/view/PrintPrompt.h"
 
-void printPrompt() {
+/*Exibi o prompt na tela com o nome do host e o caminho atual de onde esta sendo 
+  executado o programa */
+const char* typePrompt() {
+
+    struct passwd *pw = getpwuid(getuid());
+
     char hostname[HOST_NAME_MAX];
     char cwd[PATH_MAX];
     char *home_dir = getenv("HOME");
-    struct passwd *pw = getpwuid(getuid());
+    static char prompt[512];
 
-    if (gethostname(hostname, HOST_NAME_MAX) != 0) {
+    // Obtém informações do sistema
+    if (gethostname(hostname, HOST_NAME_MAX)) {
         perror("gethostname");
-        exit(EXIT_FAILURE);
+        return "[erro]";
     }
 
     if (getcwd(cwd, sizeof(cwd)) == NULL) {
         perror("getcwd");
-        exit(EXIT_FAILURE);
+        return "[erro]";
+    }
+    
+    if (!pw) {
+        perror("getpwuid");
+        return "[erro]";
     }
 
+    // Substitui $HOME por '~' no caminho
     char *abbreviated_cwd = cwd;
-    if (home_dir != NULL && strstr(cwd, home_dir) == cwd) {
-
+    if (home_dir && strstr(cwd, home_dir) == cwd) {
         abbreviated_cwd = malloc(strlen(cwd) - strlen(home_dir) + 2);
-        if (abbreviated_cwd != NULL) {
-            abbreviated_cwd[0] = '~';
-            strcpy(abbreviated_cwd + 1, cwd + strlen(home_dir));
+        if (abbreviated_cwd) {
+            sprintf(abbreviated_cwd, "~%s", cwd + strlen(home_dir));
         }
     }
 
-    printf("%s%s@%s%s%s:%s%s%s$ ",
+    snprintf(
+        prompt, sizeof(prompt),
+        "%s%s@%s%s%s:%s%s%s$ ",
         COLOR_USER_HOST, pw->pw_name,
         COLOR_USER_HOST, hostname,
-        COLOR_RESET,      
-        COLOR_PATH, abbreviated_cwd, 
-        COLOR_RESET               
+        COLOR_RESET,
+        COLOR_PATH, abbreviated_cwd,
+        COLOR_RESET
     );
 
     if (abbreviated_cwd != cwd) {
         free(abbreviated_cwd);
     }
+
+    return prompt;
 }
 

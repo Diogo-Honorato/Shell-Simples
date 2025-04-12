@@ -14,6 +14,6 @@
 #include <pwd.h>
 #include <string.h>
 
-void printPrompt();
+const char* typePrompt();
 
 #endif

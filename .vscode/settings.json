@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "printprompt.h": "c",
+        "main.h": "c",
+        "readcommand.h": "c",
+        "cstdlib": "c"
+    }
+}

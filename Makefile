@@ -1,6 +1,6 @@
 COMPILADORC = gcc
 CFLAGS = -Wall -Wextra -O2 -g
-LDFLAGS = -lm -D_POSIX_C_SOURCE=200809L
+LDFLAGS = -lm -D_POSIX_C_SOURCE=200809L -lreadline
 EXECUTABLE = shell
 
 # Diretórios

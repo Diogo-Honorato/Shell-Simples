@@ -2,12 +2,22 @@
 
 int main(){
 
-    //Main loop
-    // while(1){
-        printPrompt();
-        printf("\n");
+    if(system("clear") == -1){
 
-    // }
+        perror("\nA child process could not be created, or its status could not be retrieved.");
+        exit(0);
+    }
+    
+    char* output = NULL;
+
+    //Main loop
+    while(1){
+
+        output = readCommand(typePrompt());
+
+        printf("seu comando foi: %s\n",output);//Apenas para testes
+        free(output);
+    }
 
     return 0;
 }
