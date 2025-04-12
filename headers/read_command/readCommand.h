@@ -1,7 +1,7 @@
 #ifndef READCOMMAND_H
 #define READCOMMAND_H
 
-#define CLOSE_SHELL (stringLine == NULL || strcmp(stringLine, "exit") == 0)
+#define CLOSE_SHELL (strcmp(stringLine, "exit") == 0)
 
 #include <stdio.h>
 #include <stdlib.h>

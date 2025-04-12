@@ -10,7 +10,7 @@ char* readCommand(const char* prompt){
 
         //Libera o comando e encerra o shell
         free(stringLine);
-        exit(0);
+        return NULL;
     }
     else{
 

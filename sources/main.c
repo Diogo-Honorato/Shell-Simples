@@ -11,9 +11,7 @@ int main(){
     char* output = NULL;
 
     //Main loop
-    while(1){
-
-        output = readCommand(typePrompt());
+    while((output = readCommand(typePrompt())) != NULL){
 
         printf("seu comando foi: %s\n",output);//Apenas para testes
         free(output);
