@@ -21,10 +21,25 @@ char* readCommand(const char* prompt){
 }
 
 void initReadCommand(){
-
+    
    //Configure o readline para completar caminhos automaticamente quando a tecla Tab for pressionada.
     rl_bind_key('\t', rl_complete);
-
     // Ativar historico
     using_history();
+}
+
+/* Handles SIGINT */
+void signalHandler(int signal)
+{
+    switch (signal)
+    {
+    case SIGINT:
+        /* Put readline in a clean state after Ctrl+C. */
+        rl_free_line_state();
+        rl_cleanup_after_signal();
+
+        /* HACK: Shows ^C and skip to next line! */
+        printf("^C");
+        break;
+    }
 }

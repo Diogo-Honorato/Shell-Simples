@@ -2,8 +2,8 @@
 #define PRINTPROMPT_H
 #define _POSIX_C_SOURCE 200809L
 
-#define COLOR_USER_HOST  "\033[1;32m"  // Verde
-#define COLOR_PATH  "\033[1;34m"  // Azul
+#define COLOR_USER_HOST  "\033[01;32m"  // Verde
+#define COLOR_PATH  "\033[01;34m"  // Azul
 #define COLOR_RESET "\033[0m" 
 
 #include <stdio.h>
