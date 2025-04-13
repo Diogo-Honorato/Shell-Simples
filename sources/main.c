@@ -7,8 +7,10 @@ int main(){
         perror("\nA child process could not be created, or its status could not be retrieved.");
         exit(0);
     }
-    
+
     char* output = NULL;
+
+    initReadCommand();
 
     //Main loop
     while((output = readCommand(typePrompt())) != NULL){

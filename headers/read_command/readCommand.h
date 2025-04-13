@@ -11,6 +11,6 @@
 
 
 char* readCommand(const char* prompt);
-
+void initReadCommand();
 
 #endif

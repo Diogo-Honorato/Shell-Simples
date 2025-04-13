@@ -19,3 +19,12 @@ char* readCommand(const char* prompt){
 
     return stringLine;
 }
+
+void initReadCommand(){
+
+   //Configure o readline para completar caminhos automaticamente quando a tecla Tab for pressionada.
+    rl_bind_key('\t', rl_complete);
+
+    // Ativar historico
+    using_history();
+}

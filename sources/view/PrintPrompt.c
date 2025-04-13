@@ -29,22 +29,27 @@ const char* typePrompt() {
 
     // Substitui $HOME por '~' no caminho
     char *abbreviated_cwd = cwd;
+
     if (home_dir && strstr(cwd, home_dir) == cwd) {
+
         abbreviated_cwd = malloc(strlen(cwd) - strlen(home_dir) + 2);
+
         if (abbreviated_cwd) {
             sprintf(abbreviated_cwd, "~%s", cwd + strlen(home_dir));
         }
     }
 
-    snprintf(
-        prompt, sizeof(prompt),
-        "%s%s@%s%s%s:%s%s%s$ ",
-        COLOR_USER_HOST, pw->pw_name,
-        COLOR_USER_HOST, hostname,
-        COLOR_RESET,
-        COLOR_PATH, abbreviated_cwd,
-        COLOR_RESET
-    );
+    // snprintf(
+    //     prompt, sizeof(prompt),
+    //     "%s%s@%s%s%s:%s%s%s$ ",
+    //     COLOR_USER_HOST, pw->pw_name,
+    //     COLOR_USER_HOST, hostname,
+    //     COLOR_RESET,
+    //     COLOR_PATH, abbreviated_cwd,
+    //     COLOR_RESET
+    // );
+
+    snprintf(prompt,sizeof(prompt),"%s@%s:%s$ ",pw->pw_name,hostname,abbreviated_cwd);
 
     if (abbreviated_cwd != cwd) {
         free(abbreviated_cwd);
