@@ -39,17 +39,15 @@ const char* typePrompt() {
         }
     }
 
-    // snprintf(
-    //     prompt, sizeof(prompt),
-    //     "%s%s@%s%s%s:%s%s%s$ ",
-    //     COLOR_USER_HOST, pw->pw_name,
-    //     COLOR_USER_HOST, hostname,
-    //     COLOR_RESET,
-    //     COLOR_PATH, abbreviated_cwd,
-    //     COLOR_RESET
-    // );
-
-    snprintf(prompt,sizeof(prompt),"%s@%s:%s$ ",pw->pw_name,hostname,abbreviated_cwd);
+    snprintf(
+        prompt, sizeof(prompt),
+        "%s%s@%s%s%s:%s%s%s$ ",
+        COLOR_USER_HOST, pw->pw_name,
+        COLOR_USER_HOST, hostname,
+        COLOR_RESET,
+        COLOR_PATH, abbreviated_cwd,
+        COLOR_RESET
+    );
 
     if (abbreviated_cwd != cwd) {
         free(abbreviated_cwd);
