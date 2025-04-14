@@ -4,7 +4,7 @@ int main(){
 
     if(system("clear") == -1){
 
-        perror("\nA child process could not be created, or its status could not be retrieved.");
+        perror("A child process could not be created, or its status could not be retrieved.\n");
         exit(0);
     }
     

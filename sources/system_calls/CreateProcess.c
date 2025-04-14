@@ -9,7 +9,7 @@ int createProcess(char **argv){
 
     if(pid < 0){
 
-        perror("Error fork");
+        perror("Error fork\n");
         exit(EXIT_FAILURE);
     }
 

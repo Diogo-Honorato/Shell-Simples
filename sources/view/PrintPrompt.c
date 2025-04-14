@@ -13,17 +13,17 @@ const char* typePrompt() {
 
     // Obtém informações do sistema
     if (gethostname(hostname, HOST_NAME_MAX)) {
-        perror("gethostname");
+        perror("gethostname\n");
         return "[erro]";
     }
 
     if (getcwd(cwd, sizeof(cwd)) == NULL) {
-        perror("getcwd");
+        perror("getcwd\n");
         return "[erro]";
     }
     
     if (!pw) {
-        perror("getpwuid");
+        perror("getpwuid\n");
         return "[erro]";
     }
 
