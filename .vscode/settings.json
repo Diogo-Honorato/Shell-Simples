@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "createprocess.h": "c",
-        "unistd.h": "c",
-        "main.h": "c",
-        "printprompt.h": "c",
-        "readcommand.h": "c"
-    }
-}
