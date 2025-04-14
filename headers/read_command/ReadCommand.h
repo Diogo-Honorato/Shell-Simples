@@ -2,6 +2,8 @@
 #define READCOMMAND_H
 
 #define CLOSE_SHELL (stringLine == NULL || strcmp(stringLine, "exit") == 0)
+#define BUFFER_SIZE 1024
+#define DELIMITERS " \t\n"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,6 +15,6 @@
 
 char* readCommand(const char* prompt);
 void initReadCommand();
-void signalHandler(int signal);
+char** tokenString(char* string);
 
 #endif

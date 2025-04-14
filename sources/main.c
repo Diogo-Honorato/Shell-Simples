@@ -8,15 +8,20 @@ int main(){
         exit(0);
     }
     
-    char* output = NULL;
+    char** argv = NULL;
+    char* commands = NULL;
     
     initReadCommand();
 
     //Main loop
-    while((output = readCommand(typePrompt())) != NULL){
+    while((commands = readCommand(typePrompt())) != NULL){
 
-        printf("seu comando foi: %s\n",output);//Apenas para testes
-        free(output);
+        argv = tokenString(commands);
+
+        createProcess(argv);
+
+        free(commands);
+        free(argv);
     }
 
 

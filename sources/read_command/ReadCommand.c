@@ -1,4 +1,4 @@
-#include "../../headers/read_command/readCommand.h"
+#include "../../headers/read_command/ReadCommand.h"
 
 char* readCommand(const char* prompt){
 
@@ -28,18 +28,28 @@ void initReadCommand(){
     using_history();
 }
 
-/* Handles SIGINT */
-void signalHandler(int signal)
-{
-    switch (signal)
-    {
-    case SIGINT:
-        /* Put readline in a clean state after Ctrl+C. */
-        rl_free_line_state();
-        rl_cleanup_after_signal();
+//Tokenização da string de comandos
+char** tokenString(char* string){
 
-        /* HACK: Shows ^C and skip to next line! */
-        printf("^C");
-        break;
+    char** tokens = calloc(BUFFER_SIZE, sizeof(*tokens));
+
+    if(!tokens){
+
+        perror("Falha ao alocar memoria para 'tokens'\n");
+        exit(EXIT_FAILURE);
     }
+
+    tokens[0] = strtok(string,DELIMITERS);
+
+    for(int i = 1; (tokens[i] = strtok(NULL,DELIMITERS)) != NULL; i++){
+
+        if((i + 1) == BUFFER_SIZE){
+
+            perror("limite de comandos alcançados\n");
+            break;
+        }
+    }
+
+    return tokens;
 }
+
