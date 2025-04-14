@@ -19,6 +19,7 @@ int main(){
         free(output);
     }
 
-    return 0;
+
+    return EXIT_SUCCESS;
 }
 
