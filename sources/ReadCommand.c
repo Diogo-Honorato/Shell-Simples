@@ -1,4 +1,4 @@
-#include "../../headers/read_command/ReadCommand.h"
+#include "../headers/ReadCommand.h"
 
 char* readCommand(const char* prompt){
 

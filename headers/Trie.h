@@ -18,17 +18,23 @@ typedef struct Node
     
     FunctionType *functionPointer; // Ponteiro que armazena o endereço das funções
 
+    const char *DESCRIPTION;
+
     bool endword;
     
 } Node;
 
+//Node *root; deveria ser global?
+
 Node *CreateNode();
 
-int EmptyTrie(Node *root);
+bool EmptyTrie(Node *root);
 
-int InsertTrie(Node *root, char *word, FunctionType *function);
+int InsertTrie(Node *root, char *word, FunctionType *function, const char *DESCRIPTION);
 
 FunctionType* Search(Node *root, char *word);
+
+int AddBultin(Node *root, char *nameBuiltin,FunctionType *nameFunction, const char *DESCRIPTION);
 
 int PrintTrie(Node *root, char *str, int index);
 

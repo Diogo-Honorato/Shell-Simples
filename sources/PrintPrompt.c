@@ -1,4 +1,4 @@
-#include "../../headers/view/PrintPrompt.h"
+#include "../headers/PrintPrompt.h"
 
 /*Exibi o prompt na tela com o nome do host e o caminho atual de onde esta sendo 
   executado o programa */

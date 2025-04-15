@@ -1,4 +1,4 @@
-#include "../headers/main/main.h"
+#include "../headers/main.h"
 
 int main()
 {
@@ -11,7 +11,6 @@ int main()
 
     char** argv = NULL;
     char* commands = NULL;
-    Node *root = CreateNode();
 
     initReadCommand();
 
@@ -25,8 +24,6 @@ int main()
         free(commands);
         free(argv);
     }
-
-    FreeTrie(root);
 
     return EXIT_SUCCESS;
 }

@@ -1,4 +1,4 @@
-#include "../../headers/system_calls/CreateProcess.h"
+#include "../headers/CreateProcess.h"
 
 //Cria um processo com 'fork()' e o executa com 'execvp()' 
 int createProcess(char **argv){

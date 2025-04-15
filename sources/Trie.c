@@ -1,4 +1,4 @@
-#include "../../headers/trie/Trie.h"
+#include "../headers/Trie.h"
 
 Node *CreateNode()
 {
@@ -12,11 +12,13 @@ Node *CreateNode()
     newnode->endword = false;
 
     newnode->functionPointer = NULL;
+    
+    newnode->DESCRIPTION = NULL;
 
     return newnode;
 }
 
-int EmptyTrie(Node *root)
+bool EmptyTrie(Node *root)
 {
     for (int i = 0; i < SIZE_CHAR; i++)
     {
@@ -26,12 +28,11 @@ int EmptyTrie(Node *root)
         }
     }
     perror("EMPTY TREE !\n");
-    exit(EXIT_FAILURE);
 
     return true;
 }
 
-int InsertTrie(Node *root, char *word, FunctionType *function)
+int InsertTrie(Node *root, char *word, FunctionType *function, const char *DESCRIPTION)
 {
     Node *current = root;
     int index;
@@ -51,6 +52,7 @@ int InsertTrie(Node *root, char *word, FunctionType *function)
 
     current->endword = true;
     current->functionPointer = function;
+    current->DESCRIPTION = DESCRIPTION;
 
     return EXIT_SUCCESS;
 }
@@ -61,7 +63,10 @@ FunctionType* Search(Node *root, char *word)
     int index;
     int len = strlen(word);
 
-    EmptyTrie(root);
+    if(EmptyTrie(root)){
+
+        return NULL;
+    }
 
     for (int i = 0; i < len; i++)
     {
@@ -85,17 +90,24 @@ FunctionType* Search(Node *root, char *word)
     }
 }
 
-// int SearchTrie(Node *root, char *word)
-// {
-//     if(search(root,word))
-//     {
-//         printf("\n\nWord was found: %s\n\n",word);
-//     }
-//     else
-//     {
-//         printf("\n\nWord NOT found: %s\n\n",word);
-//     }
-// }
+int AddBultin(Node *root, char *nameBuiltin,FunctionType *nameFunction, const char *DESCRIPTION)
+{
+    if(EmptyTrie(root)){
+
+        return EXIT_FAILURE;
+    }
+
+    if(Search(root,nameBuiltin) == NULL)
+    {
+        InsertTrie(root,nameBuiltin,nameFunction,DESCRIPTION);
+        return EXIT_SUCCESS;
+    }
+    else
+    {
+        printf("%s: comando existente\n",nameBuiltin);
+        return EXIT_FAILURE;
+    }
+}
 
 int PrintTrie(Node *root, char *str, int index)
 {
