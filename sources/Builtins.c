@@ -3,7 +3,6 @@
 //Obs.: A ordem das inserções dos nomes dos builtins tem que ser a mesma que a ordem de inserção de suas funções.
 const char* BUFFER_BUILTINS[] = {"exit","cd","help"};
 
-//Array de funções dos builtins
 FunctionType *BUFFER_FUNCTIONS[] = {shellExit,shellCd,shellHelp};
 
 
