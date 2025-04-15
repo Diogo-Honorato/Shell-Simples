@@ -13,8 +13,6 @@ Node *CreateNode()
 
     newnode->functionPointer = NULL;
     
-    newnode->DESCRIPTION = NULL;
-
     return newnode;
 }
 
@@ -27,12 +25,11 @@ bool EmptyTrie(Node *root)
             return false;
         }
     }
-    perror("EMPTY TREE !\n");
-
+    
     return true;
 }
 
-int InsertTrie(Node *root, char *word, FunctionType *function, const char *DESCRIPTION)
+int InsertTrie(Node *root, const char *word, FunctionType *function)
 {
     Node *current = root;
     int index;
@@ -52,12 +49,11 @@ int InsertTrie(Node *root, char *word, FunctionType *function, const char *DESCR
 
     current->endword = true;
     current->functionPointer = function;
-    current->DESCRIPTION = DESCRIPTION;
 
     return EXIT_SUCCESS;
 }
 
-FunctionType* Search(Node *root, char *word)
+FunctionType* Search(Node *root, const char *word)
 {
     Node *current = root;
     int index;
@@ -87,25 +83,6 @@ FunctionType* Search(Node *root, char *word)
     else
     {
         return NULL;
-    }
-}
-
-int AddBultin(Node *root, char *nameBuiltin,FunctionType *nameFunction, const char *DESCRIPTION)
-{
-    if(EmptyTrie(root)){
-
-        return EXIT_FAILURE;
-    }
-
-    if(Search(root,nameBuiltin) == NULL)
-    {
-        InsertTrie(root,nameBuiltin,nameFunction,DESCRIPTION);
-        return EXIT_SUCCESS;
-    }
-    else
-    {
-        printf("%s: comando existente\n",nameBuiltin);
-        return EXIT_FAILURE;
     }
 }
 

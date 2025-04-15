@@ -8,5 +8,6 @@
 #include "PrintPrompt.h"
 #include "ReadCommand.h"
 #include "CreateProcess.h"
+#include "Builtins.h"
 
 #endif

@@ -6,7 +6,8 @@ char* readCommand(const char* prompt){
 
     stringLine = readline(prompt);
 
-    if(CLOSE_SHELL){
+
+    if(stringLine == NULL){
 
         //Libera o comando e encerra o shell
         free(stringLine);
@@ -51,5 +52,11 @@ char** tokenString(char* string){
     }
 
     return tokens;
+}
+
+
+void sighandler(int signal){
+
+    printf("^C\n,%d",signal);
 }
 
