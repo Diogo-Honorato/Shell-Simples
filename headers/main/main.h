@@ -8,5 +8,6 @@
 #include "../view/PrintPrompt.h"
 #include "../read_command/ReadCommand.h"
 #include "../system_calls/CreateProcess.h"
+#include "../trie/Trie.h"
 
 #endif
