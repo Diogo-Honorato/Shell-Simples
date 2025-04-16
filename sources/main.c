@@ -9,8 +9,7 @@ int main()
         perror("A child process could not be created, or its status could not be retrieved.\n");
         exit(0);
     }
-
-
+    
     char **argv = NULL;
     char *commands = NULL;
 

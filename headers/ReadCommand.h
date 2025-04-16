@@ -15,6 +15,6 @@
 char* readCommand(const char* prompt);
 void initReadCommand();
 char** tokenString(char* string);
-void sighandler(int signal);
+void sigHandler(int sig);
 
 #endif

@@ -2,11 +2,13 @@
 
 char* readCommand(const char* prompt){
 
+    //Tratador de sinais
+    
+    sigHandler(0);
+    
     char* stringLine = NULL;
-
     stringLine = readline(prompt);
-
-
+    
     if(stringLine == NULL){
 
         //Libera o comando e encerra o shell
@@ -17,7 +19,6 @@ char* readCommand(const char* prompt){
 
         add_history(stringLine);  //Adicionando comando no historico
     }
-
     return stringLine;
 }
 
@@ -55,8 +56,9 @@ char** tokenString(char* string){
 }
 
 
-void sighandler(int signal){
-
-    printf("^C\n,%d",signal);
+void sigHandler(int sig){
+    (void)sig;
+    
+    signal(SIGINT,SIG_IGN);
 }
 
