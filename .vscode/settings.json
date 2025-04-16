@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "readcommand.h": "c",
-        "createprocess.h": "c"
-    }
-}
