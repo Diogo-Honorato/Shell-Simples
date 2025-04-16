@@ -2,7 +2,6 @@
 
 int main()
 {
-
     if (system("clear") == -1)
     {
 

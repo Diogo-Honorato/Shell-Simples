@@ -3,8 +3,7 @@
 char* readCommand(const char* prompt){
 
     //Tratador de sinais
-    
-    sigHandler(0);
+    sigGroupHandler();
     
     char* stringLine = NULL;
     stringLine = readline(prompt);
@@ -56,9 +55,17 @@ char** tokenString(char* string){
 }
 
 
+void sigGroupHandler(){
+    
+    signal(SIGINT,sigHandler);
+}
 void sigHandler(int sig){
     (void)sig;
     
-    signal(SIGINT,SIG_IGN);
+    //Gera uma nova linha prompt após um sinal SIGINT(^C)
+    printf("\n");
+    rl_on_new_line();
+    rl_replace_line("", 0);
+    rl_redisplay();
 }
 
