@@ -26,13 +26,13 @@ int main()
     // Main loop
     while ((commands = readCommand(typePrompt())) != NULL)
     {
-        //Verifica se o comando e externo ou interno
-        if (commands != NULL && *commands != '\0')
+        if (*commands != '\0')//Verifica se foi apenas um 'Enter'
         {
             argv = tokenString(commands);
 
             function = Search(root, argv[0]);
 
+            //Verifica se o comando e externo ou interno
             if (function != NULL)
             {
                 if(function(argv)){//Execução do comando interno (builtins)
