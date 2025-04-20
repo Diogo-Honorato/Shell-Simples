@@ -1,4 +1,5 @@
 #include "../headers/Builtins.h"
+#include <unistd.h>
 
 //Obs.: A ordem das inserções dos nomes dos builtins tem que ser a mesma que a ordem de inserção de suas funções.
 const char* BUFFER_BUILTINS[] = {"exit","cd","help"};
@@ -15,8 +16,22 @@ int shellExit(char **argv)
 
 int shellCd(char **argv)
 {
-
-    printf("Usou o comando cd\n");
+    if (argv[1] == NULL) {
+        char *home_dir = getenv("HOME");
+        if (home_dir == NULL) {
+            fprintf(stderr, "cd: não foi possível obter o diretório home\n");
+            return EXIT_FAILURE;
+        }
+        if (chdir(home_dir) != 0) {
+            perror("cd");
+            return EXIT_FAILURE;
+        }
+    } else {
+        if (chdir(argv[1]) != 0) {
+            perror("cd");
+            return EXIT_FAILURE;
+        }
+    }
     return EXIT_SUCCESS;
 }
 
