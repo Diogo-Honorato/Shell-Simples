@@ -1,12 +1,6 @@
 #include "../headers/Builtins.h"
 #include <unistd.h>
 
-//Obs.: A ordem das inserções dos nomes dos builtins tem que ser a mesma que a ordem de inserção de suas funções.
-const char* BUFFER_BUILTINS[] = {"exit","cd","help"};
-
-FunctionType *BUFFER_FUNCTIONS[] = {shellExit,shellCd,shellHelp};
-
-
 int shellExit(char **argv)
 {   
     printf("%s\n",argv[0]);
@@ -43,21 +37,19 @@ int shellHelp(char **argv)
     return EXIT_SUCCESS;
 }
 
-int addBuiltin(Node *root, const char **nameBuiltin, FunctionType **nameFunction)
+int addBuiltin(Node *root, const char **NAME_BUILTINS, FunctionType **nameFunctions, const size_t NUM_BUILTINS)
 {
 
-    int tam = NUM_BUILTINS;
-
-    for (int i = 0; i < tam; i++)
+    for (size_t i = 0; i < NUM_BUILTINS; i++)
     {
 
-        if (Search(root, nameBuiltin[i]) == NULL)
+        if (Search(root,NAME_BUILTINS[i]) == NULL)
         {
-            InsertTrie(root, nameBuiltin[i], nameFunction[i]);
+            InsertTrie(root,NAME_BUILTINS[i], nameFunctions[i]);
         }
         else
         {
-            printf("%s: comando existente\n", nameBuiltin[i]);
+            printf("%s: comando existente\n",NAME_BUILTINS[i]);
             return EXIT_FAILURE;
         }
     }
@@ -65,11 +57,20 @@ int addBuiltin(Node *root, const char **nameBuiltin, FunctionType **nameFunction
     return EXIT_SUCCESS;
 }
 
-Node *startBuffer(){
+Node *startBufferBuiltins(){
 
     Node *root = CreateNode();
 
-    if(addBuiltin(root,BUFFER_BUILTINS,BUFFER_FUNCTIONS)){
+    /*Obs.: A ordem das inserções dos nomes dos builtins tem que ser a mesma 
+    que a ordem de inserção de suas funções*/
+    const char* BUFFER_BUILTINS[] = {"exit","cd","help"};
+
+    FunctionType *BUFFER_FUNCTIONS[] = {shellExit,shellCd,shellHelp};
+
+    //Total de Builtins
+    size_t NUM_BUILTINS = sizeof(BUFFER_BUILTINS)/sizeof(char*);
+
+    if(addBuiltin(root,BUFFER_BUILTINS,BUFFER_FUNCTIONS, NUM_BUILTINS)){
 
         perror("Não foi possível iniciar a árvore de dependências");
         return NULL;

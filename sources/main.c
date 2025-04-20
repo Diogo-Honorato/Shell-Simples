@@ -12,7 +12,7 @@ int main()
     char **argv = NULL;
     char *commands = NULL;
 
-    Node *root = startBuffer();
+    Node *root = startBufferBuiltins();
     initReadCommand();
     
 
