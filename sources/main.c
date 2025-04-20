@@ -6,7 +6,7 @@ int main()
     {
 
         perror("A child process could not be created, or its status could not be retrieved.\n");
-        exit(0);
+        exit(EXIT_FAILURE);
     }
     
     char **argv = NULL;
@@ -35,7 +35,7 @@ int main()
             //Verifica se o comando e externo ou interno
             if (function != NULL)
             {
-                if(function(argv)){//Execução do comando interno (builtins)
+                if(function(argv) == -1){//Execução do comando interno (builtins)
 
                     free(argv);
                     free(commands);

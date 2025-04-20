@@ -11,7 +11,7 @@ int shellExit(char **argv)
 {   
     printf("%s\n",argv[0]);
     
-    return 1;
+    return CLOSE_SHELL;
 }
 
 int shellCd(char **argv)
@@ -37,6 +37,7 @@ int shellCd(char **argv)
 
 int shellHelp(char **argv)
 {
+    (void)argv;//so pra parar de aparecer warning, pode retirar quando implementar a função
 
     printf("Usou o comando help\n");
     return EXIT_SUCCESS;
