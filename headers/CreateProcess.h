@@ -7,6 +7,6 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-int createProcess(char **argv);
+int createProcess(char **argv, int background);
 
 #endif

@@ -9,5 +9,6 @@
 #include "ReadCommand.h"
 #include "CreateProcess.h"
 #include "Builtins.h"
+#include "ExecuteCommand.h"
 
 #endif

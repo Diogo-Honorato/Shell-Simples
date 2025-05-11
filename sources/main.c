@@ -1,59 +1,39 @@
 #include "../headers/main.h"
+#include "../headers/Builtins.h"
 
 int main()
 {
     if (system("clear") == -1)
     {
-
         perror("A child process could not be created, or its status could not be retrieved.\n");
-        exit(EXIT_FAILURE);
+        exit(0);
     }
     
-    char **argv = NULL;
     char *commands = NULL;
-
-    Node *root = startBufferBuiltins();
+    Node *root = startBufferBuiltins(); // Changed from startBuffer() to startBufferBuiltins()
     initReadCommand();
     
-
     if(root == NULL){
-
         exit(EXIT_FAILURE);
     }
     
-    FunctionType *function;
-
     // Main loop
     while ((commands = readCommand(typePrompt())) != NULL)
     {
-        if (*commands != '\0')//Verifica se foi apenas um 'Enter'
+        // Verifica se o comando não está vazio
+        if (commands != NULL && *commands != '\0')
         {
-            argv = tokenString(commands);
-
-            function = Search(root, argv[0]);
-
-            //Verifica se o comando e externo ou interno
-            if (function != NULL)
-            {
-                if(function(argv) == -1){//Execução do comando interno (builtins)
-
-                    free(argv);
-                    free(commands);
-                    break;
-                } 
+            if (executeCommand(commands, root)) {
+                // Se executeCommand retornar verdadeiro, saímos do loop
+                free(commands);
+                break;
             }
-            else{
-
-                createProcess(argv); //Execução do comando externo
-            }
-
-            free(argv);
         }
-
+        
         free(commands);
     }
-
+    
     FreeTrie(root);
-
+    
     return EXIT_SUCCESS;
 }
