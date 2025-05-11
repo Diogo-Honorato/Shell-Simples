@@ -29,11 +29,17 @@ int shellCd(char **argv)
     return EXIT_SUCCESS;
 }
 
-int shellHelp(char **argv)
-{
-    (void)argv;//so pra parar de aparecer warning, pode retirar quando implementar a função
-
-    printf("Usou o comando help\n");
+int shellHelp(char **argv) {
+    (void)argv; // Para evitar warning de parâmetro não utilizado
+    
+    printf("Shell - Mini shell implementado para trabalho prático\n");
+    printf("Os seguintes comandos são builtins:\n");
+    printf("  cd [dir]    - Muda o diretório atual para [dir]\n");
+    printf("  help        - Exibe esta mensagem de ajuda\n");
+    printf("  exit        - Sai do shell\n");
+    printf("\nUse o operador | para conectar comandos em pipeline\n");
+    printf("Use & no final do comando para executá-lo em background\n");
+    
     return EXIT_SUCCESS;
 }
 
