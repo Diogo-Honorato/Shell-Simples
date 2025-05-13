@@ -10,7 +10,7 @@ int main()
     }
     
     char *commands = NULL;
-    Node *root = startBufferBuiltins(); // Changed from startBuffer() to startBufferBuiltins()
+    Node *root = startBufferBuiltins();
     initReadCommand();
     
     if(root == NULL){
