@@ -1,6 +1,6 @@
 #include "../headers/PrintPrompt.h"
 
-/*Exibi o prompt na tela com o nome do host e o caminho atual onde se 
+/*Exibe o prompt na tela com o nome do host e o caminho atual onde se 
 encontra o estado do programa*/
 const char* typePrompt() {
 
