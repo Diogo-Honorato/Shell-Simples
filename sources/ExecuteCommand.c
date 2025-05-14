@@ -1,9 +1,18 @@
 #include "../headers/ExecuteCommand.h"
 #include "../headers/ReadCommand.h"
 #include "../headers/CreateProcess.h"
+#include "../headers/Pipe.h"
 #include <string.h>
 
 int executeCommand(char *command, Node *root) {
+
+    // Verifica se a linha contém pipe antes de tokenizar
+    if (strchr(command, '|') != NULL) {
+        // Executa pipeline diretamente
+        execute_with_pipes(command);
+        return EXIT_SUCCESS;
+    }
+
     char **tokens = tokenString(command);
     int i = 0, background = 0;
     
